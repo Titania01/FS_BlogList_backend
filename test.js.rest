@@ -1,0 +1,11 @@
+@apibase = http://localhost:3003/api/blogs
+
+POST {{apibase}}
+Content-Type: application/json
+
+{
+  "author": "Badmus",
+  "title": "blogging",
+  "url": "http://localhost:3003/api/blogs",
+  "amount of upvotes": 40
+}
