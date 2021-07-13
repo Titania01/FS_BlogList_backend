@@ -2,10 +2,13 @@
   "name": "fs_bloglist_backend",
   "version": "1.0.0",
   "description": "A blog API",
-  "main": "index.js",
+  "main": "src/index.js",
+  "engines":{
+    "node":"12.22.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec babel-node src",
+    "dev": "nodemon --exec babel-node src/index.js",
     "start": "node dist/",
     "lint": "./node_modules/.bin/eslint . --fix",
     "build": "npm run lint && babel src -d dist"
@@ -42,6 +45,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.12.14"
+    "mongoose": "^5.12.14",
+    "morgan": "^1.10.0"
   }
 }
