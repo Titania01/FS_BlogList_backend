@@ -4,7 +4,7 @@
   "description": "A blog API",
   "main": "src/index.js",
   "engines": {
-    "node": "12.22.1"
+    "node": "14.17.3"
   },
   "scripts": {
     "test": "jest --verbose",
