@@ -1,2 +1,4 @@
 ###
 GET http://localhost:9999/api/blogs
+
+POST http://localhost:9999/api/blogs

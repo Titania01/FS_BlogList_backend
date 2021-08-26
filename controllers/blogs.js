@@ -1,13 +1,15 @@
 const blogsRouter = require("express").Router();
 import Blog from "../models/blog";
 
-blogsRouter.get("/api/blogs", (request, response) => {
-  Blog.find({}).then((blogs) => {
-    response.send(blogs);
-  });
+blogsRouter.get("/", (request, response) => {
+  Blog.find({})
+    .then((blogs) => {
+      response.json(blogs);
+    })
+    .catch((err) => response.send(err));
 });
 
-blogsRouter.post("/api/blogs", (request, response) => {
+blogsRouter.post("/", (request, response) => {
   const blog = new Blog(request.body);
 
   blog.save().then((result) => {

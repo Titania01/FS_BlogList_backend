@@ -1,3 +1,5 @@
+import Blog from "../models/blog.js"
+
 export const dummy = () => {
   return 1;
 };
@@ -12,4 +14,39 @@ export const favoriteBlog = (blogs) => {
   return blogs
     .filter((blog) => blog.likes === favourite)
     .map(({ title, author, likes }) => ({ title, author, likes }))[0];
+};
+
+export const mostBlog = (array) => {
+  const blogObject = {};
+  array.forEach((item) => {
+    if (blogObject[item.author]) blogObject[item.author] += 1;
+    else blogObject[item.author] = 1;
+  });
+  return Object.entries(blogObject)
+    .map((item) => ({ author: item[0], blog: item[1] }))
+    .sort((a, b) => b.likes - a.likes)[0];
+};
+
+export const initialBlogs = [
+  {
+    _id: "5a422a851b54a676234d17f7",
+    title: "React patterns",
+    author: "Michael Chan",
+    url: "https://reactpatterns.com/",
+    likes: 7,
+    __v: 0,
+  },
+  {
+    _id: "5a422aa71b54a676234d17f8",
+    title: "Go To Statement Considered Harmful",
+    author: "Edsger W. Dijkstra",
+    url: "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+    likes: 5,
+    __v: 0,
+  },
+];
+
+export const blogsInDb = async () => {
+  const blogs = await Blog.find({});
+  return blogs.map((blog) => blog.toJSON);
 };
