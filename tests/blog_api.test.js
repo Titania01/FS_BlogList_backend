@@ -29,6 +29,11 @@ describe("get all blogs", () => {
     const response = await api.get("/api/blogs");
     expect(response.body).toHaveLength(listHelper.initialBlogs.length);
   }, 100000);
+
+  test("of having unique identifier", () => {
+    const response = await api.get("/api/blogs");
+    expect(response.body[0].id).toBeDefined();
+  });
 });
 
 afterAll(() => {
