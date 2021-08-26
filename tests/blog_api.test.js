@@ -67,6 +67,25 @@ describe("get all blogs", () => {
     if (!nonLikesBlog.likes) nonLikesBlog.likes = 0;
     await api.post("api/blogs").send(nonLikesBlog).expect(201);
   });
+
+  test("of title and url not available", async () => {
+    const voidTitleBlog = {
+      author: "Luku Lukaku",
+      url: "https://shootingstars.com/",
+      likes: 5,
+    };
+    const voidUrlBlog = {
+      title: "Hello Little Birds",
+      author: "Nancy Isime",
+      likes: "8",
+    };
+    await api.post("/api/blogs").send(voidTitleBlog).expect(400);
+
+    await api.post("/api/blogs").send(voidUrlBlog).expect(400);
+
+    const blogAtEnd = await listHelper.blogsInDB();
+    expect(blogAtEnd).toHaveLength(listHelper.initialBlogs.length);
+  });
 });
 
 afterAll(() => {
