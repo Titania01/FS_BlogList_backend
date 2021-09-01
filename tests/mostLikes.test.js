@@ -1,5 +1,11 @@
 /* eslint-disable no-undef */
 const listHelper = require("../utils/list_helper");
+const Blog = require("../models/blog.js");
+
+beforeEach(async () => {
+  await Blog.deleteMany({});
+  await Blog.insertMany(listHelper.initialBlogs);
+});
 
 describe("most likes", () => {
   const blogs = [
@@ -53,9 +59,8 @@ describe("most likes", () => {
     },
   ];
 
-  test('of the most likes out of several blogs', () => {
-    const result = listHelper.mostLikes(blogs)
-    expect(result).toEqual({author:"Edsger W. Dijkstra", likes:17})
-  })
-
+  test("of the most likes out of several blogs", () => {
+    const result = listHelper.mostLikes(blogs);
+    expect(result).toEqual({ author: "Edsger W. Dijkstra", likes: 17 });
+  });
 });

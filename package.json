@@ -9,7 +9,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node src/index.js dist/",
     "dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/index.js",
-    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles",
+    "test": "cross-env NODE_ENV=test jest --verbose -- tests/blog_api.test.js --runInBand --detectOpenHandles",
     "lint": "./node_modules/.bin/eslint . --fix",
     "build": "npm run lint && babel src -d dist"
   },

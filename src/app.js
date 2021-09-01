@@ -1,11 +1,11 @@
-import { env, MONGODB_URI } from "./config";
-import express, { json } from "express";
+const mongoose = require("mongoose");
+const { env, MONGODB_URI } = require("../utils/config");
+const express = require("express");
 const app = express();
-import cors from "cors";
-import blogsRouter from "../controllers/blogs";
-import { info, _error } from "./logger";
-import mongoose from "mongoose";
-import morgan from "morgan";
+const cors = require("cors");
+const blogsRouter = require("../controllers/blogs");
+const { info, _error } = require("../utils/logger");
+const morgan = require("morgan");
 
 mongoose
   .connect(MONGODB_URI, {
@@ -23,7 +23,7 @@ mongoose
 
 app.use(cors());
 
-app.use(json());
+app.use(express.json());
 
 if (env === "dev") app.use(morgan("dev"));
 
@@ -32,4 +32,4 @@ app.get("/", (req, res) => {
 });
 app.use("/api/blogs", blogsRouter);
 
-export default app;
+module.exports = app;

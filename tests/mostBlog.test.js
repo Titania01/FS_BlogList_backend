@@ -1,5 +1,11 @@
 /* eslint-disable no-undef */
 const listHelper = require("../utils/list_helper");
+const Blog = require("../models/blog.js");
+
+beforeEach(async () => {
+  await Blog.deleteMany({});
+  await Blog.insertMany(listHelper.initialBlogs);
+});
 
 describe("most blog", () => {
   const blogs = [

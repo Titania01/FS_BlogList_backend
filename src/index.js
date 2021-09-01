@@ -1,4 +1,4 @@
-import App from "../utils/app";
+import App from "../src/app";
 const http = require("http");
 import { PORT } from "../utils/config";
 const logger = require("../utils/logger");
