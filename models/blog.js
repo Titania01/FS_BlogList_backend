@@ -1,10 +1,14 @@
-import { Schema, model } from "mongoose";
+const mongoose = require("mongoose");
 
-const blogSchema = new Schema({
+const blogSchema = new mongoose.Schema({
   title: String,
   author: String,
   url: String,
   likes: Number,
+  User: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 blogSchema.set("toJSON", {
@@ -15,6 +19,6 @@ blogSchema.set("toJSON", {
   },
 });
 
-const blogModel = model("Blog", blogSchema);
+const blogModel = mongoose.model("Blog", blogSchema);
 
-export default blogModel;
+module.exports = blogModel;

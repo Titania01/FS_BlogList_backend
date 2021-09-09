@@ -1,4 +1,15 @@
-###
-GET http://localhost:9999/api/blogs
+@apibase = http://localhost:3003/api/users
 
-POST http://localhost:9999/api/blogs
+###
+GET http://localhost:3003/api/users
+
+###
+POST {{apibase}}
+Content-Type: application/json
+
+{
+    "blogs": [],
+    "username": "Bidmus",
+    "name": "Superuser",
+    "password": "salainen"
+}

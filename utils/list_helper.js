@@ -1,22 +1,22 @@
-import Blog from "../models/blog.js"
+const Blog = require("../models/blog.js");
 
-export const dummy = () => {
+const dummy = () => {
   return 1;
 };
 
-export const totalLikes = (blogs) => {
+const totalLikes = (blogs) => {
   const reduced = (acc, blog) => acc + blog.likes;
   return blogs.reduce(reduced, 0);
 };
 
-export const favoriteBlog = (blogs) => {
+const favoriteBlog = (blogs) => {
   const favourite = Math.max(...blogs.map((blog) => blog.likes));
   return blogs
     .filter((blog) => blog.likes === favourite)
     .map(({ title, author, likes }) => ({ title, author, likes }))[0];
 };
 
-export const mostBlog = (array) => {
+const mostBlog = (array) => {
   const blogObject = {};
   array.forEach((item) => {
     if (blogObject[item.author]) blogObject[item.author] += 1;
@@ -27,7 +27,7 @@ export const mostBlog = (array) => {
     .sort((a, b) => b.likes - a.likes)[0];
 };
 
-export const initialBlogs = [
+const initialBlogs = [
   {
     _id: "5a422a851b54a676234d17f7",
     title: "React patterns",
@@ -46,7 +46,16 @@ export const initialBlogs = [
   },
 ];
 
-export const blogsInDb = async () => {
+const blogsInDb = async () => {
   const blogs = await Blog.find({});
   return blogs.map((blog) => blog.toJSON);
+};
+
+module.exports = {
+  dummy,
+  totalLikes,
+  favoriteBlog,
+  mostBlog,
+  initialBlogs,
+  blogsInDb,
 };

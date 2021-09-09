@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const blogsRouter = require("../controllers/blogs");
+const usersRouter = require("../controllers/users");
 const { info, _error } = require("../utils/logger");
 const morgan = require("morgan");
 
@@ -31,5 +32,6 @@ app.get("/", (req, res) => {
   res.json({ message: "Begining of Nothingness" });
 });
 app.use("/api/blogs", blogsRouter);
+app.use("/api/users", usersRouter);
 
 module.exports = app;

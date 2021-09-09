@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=production node src/index.js dist/",
-    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon src/index.js",
     "test": "cross-env NODE_ENV=test jest --verbose -- tests/blog_api.test.js --runInBand --detectOpenHandles",
     "lint": "./node_modules/.bin/eslint . --fix",
     "build": "npm run lint && babel src -d dist"
@@ -31,12 +31,6 @@
   },
   "homepage": "https://github.com/Titania01/FS_BlogList_backend#readme",
   "devDependencies": {
-    "@babel/cli": "^7.14.5",
-    "@babel/core": "^7.14.6",
-    "@babel/node": "^7.14.7",
-    "@babel/plugin-transform-async-to-generator": "^7.14.5",
-    "@babel/plugin-transform-runtime": "^7.14.5",
-    "@babel/preset-env": "^7.14.7",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "jest": "^27.0.6",
@@ -44,11 +38,13 @@
     "supertest": "^6.1.6"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.12.14",
+    "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0"
   },
   "jest": {
