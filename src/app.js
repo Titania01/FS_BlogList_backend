@@ -8,6 +8,7 @@ const usersRouter = require("../controllers/users");
 const loginRouter = require("../controllers/login");
 const { info, _error } = require("../utils/logger");
 const morgan = require("morgan");
+const middleware = require("../utils/middleware");
 
 mongoose
   .connect(MONGODB_URI, {
@@ -32,8 +33,8 @@ if (env === "dev") app.use(morgan("dev"));
 app.get("/", (req, res) => {
   res.json({ message: "Begining of Nothingness" });
 });
-app.use("/api/blogs", blogsRouter);
-app.use("/api/users", usersRouter);
+app.use("/api/blogs", middleware.tokenExtractor, blogsRouter);
+app.use("/api/users", middleware.errorHandler, usersRouter);
 app.use("/api/login", loginRouter);
 
 module.exports = app;

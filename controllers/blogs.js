@@ -55,4 +55,12 @@ blogsRouter.delete("/:id", middleware.userExtractor, async (req, res) => {
   }
 });
 
+blogsRouter.put("/:id", async (req, res) => {
+  const updateId = req.params.id;
+  const update = await Blog.findByIdAndUpdate(updateId, req.body, {
+    new: true,
+  });
+  res.send(update);
+});
+
 module.exports = blogsRouter;
