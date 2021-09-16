@@ -1,15 +1,23 @@
-@apibase = http://localhost:3003/api/users
+# @apibase = http://localhost:3030/api/users
 
 ###
-GET http://localhost:3003/api/users
+GET http://localhost:3030/api/users
 
 ###
-POST {{apibase}}
+# POST {{apibase}}
 Content-Type: application/json
 
 {
-    "blogs": [],
-    "username": "Bidmus",
+    "username": "abdul",
     "name": "Superuser",
-    "password": "salainen"
+    "password": "mujib"
+}
+
+###
+post http://localhost:3030/api/login
+Content-Type: application/json
+
+{
+  "username": "abdul",
+  "password": "mujib"
 }
