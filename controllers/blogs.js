@@ -39,4 +39,20 @@ blogsRouter.post("/", middleware.userExtractor, async (request, response) => {
   return response.status(201).json(savedBlog);
 });
 
+blogsRouter.delete("/:id", middleware.userExtractor, async (req, res) => {
+  const deleteId = req.params.id;
+  const decodedToken = jwt.verify(req.token, process.env.SECRET);
+  if (!decodedToken.id) {
+    return res.status(401).send({ error: "token missing or invalid" });
+  }
+  const blog = await Blog.findById(deleteId);
+  if (
+    blog.user._id.toString() === decodedToken.id &&
+    blog.user.username === req.user
+  ) {
+    await Blog.findByIdAndDelete(deleteId);
+    res.status(204).end();
+  }
+});
+
 module.exports = blogsRouter;
