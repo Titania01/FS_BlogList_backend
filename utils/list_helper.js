@@ -1,4 +1,5 @@
 const Blog = require("../models/blog.js");
+const User = require("../models/user");
 
 const dummy = () => {
   return 1;
